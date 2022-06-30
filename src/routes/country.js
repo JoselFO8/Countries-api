@@ -41,13 +41,6 @@ const countriesToDb = async () => {
 const loadCountries = async () => { await countriesToDb() }
 loadCountries()
 
-
-// router.post('/countries/bulk', async (req, res) => {
-//     // console.log(req.body)
-//     res.send(await Country.bulkCreate(req.body));
-//     // res.send(await Country.bulkCreate(totalPaises));
-// });
-
 router.get('/countries', async (req, res) => {
     const { name } = req.query;
 
