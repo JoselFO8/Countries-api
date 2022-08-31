@@ -27,7 +27,7 @@ const countriesToDb = async () => {
     try {
         // Se verifica si la base de datos (db) contiene informacion
         const countries = await Country.findAll();
-        if(countries.length === 0) {
+        if(countries && countries.length === 0) {
             // Tomar data de paises
             const array = await getCountries();
             // let arrayJSON = await JSON.parse(array)
