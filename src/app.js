@@ -19,7 +19,7 @@ server.use(morgan('dev'));
 server.use(express.json()); //pasrsear JSON
 server.use((req, res, next) => {
   // res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header('Access-Control-Allow-Origin', CORS_URL); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', CORS_URL); // update to match the domain you will make the request from // NO OLVIDAR EN HEROKU QUITAR EL ULTIMO "/"
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
@@ -33,7 +33,7 @@ server.use('/', routes);
 // });
 
 server.get('/', (req, res) => {
-  res.send('Prueba conexion Henry' + CORS_URL);
+  res.send('Prueba conexion Henry');
 });
 
 // Error catching endware.
