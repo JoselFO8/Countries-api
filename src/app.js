@@ -33,7 +33,7 @@ server.use('/', routes);
 // });
 
 server.get('/', (req, res) => {
-  res.send('Prueba conexion Henry');
+  res.send('Prueba conexion Henry' + CORS_URL);
 });
 
 // Error catching endware.
