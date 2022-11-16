@@ -5,8 +5,8 @@ const path = require('path');
 const { DB_URI_POSTGRESQL } = process.env;
 
 const sequelize = new Sequelize(DB_URI_POSTGRESQL, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  logging: false,
+  native: false,
   dialectOptions: {
     ssl: {
       require: true,
@@ -32,8 +32,7 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
+// En sequelize.models 
 const { Country, TouristActivity } = sequelize.models;
 
 // ------------------- Aca vendrian las relaciones ------------------- //
@@ -43,8 +42,8 @@ Country.belongsToMany(TouristActivity, {through: 'CountryTouristActivity'});
 TouristActivity.belongsToMany(Country, {through: 'CountryTouristActivity'});
 
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+  ...sequelize.models,
+  conn: sequelize,
   Op
   
 };

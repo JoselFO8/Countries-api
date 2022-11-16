@@ -25,12 +25,9 @@ const getCountries = async () => {
 
 const countriesToDb = async () => {
     try {
-        // Se verifica si la base de datos (db) contiene informacion
         const countries = await Country.findAll();
         if(countries && countries.length === 0) {
-            // Tomar data de paises
             const array = await getCountries();
-            // let arrayJSON = await JSON.parse(array)
             await Country.bulkCreate(array)
         }
     } catch (error) {
@@ -62,7 +59,7 @@ router.get('/countries', async (req, res) => {
         } else {
             const country = await Country.findAll({
                 where: {
-                    name: {[Op.substring]: name} // que incluya el texto que se nos pasa por query
+                    name: {[Op.substring]: name}
                 }, 
                 include: [{ 
                     model: TouristActivity,
@@ -81,7 +78,6 @@ router.get('/countries', async (req, res) => {
     }
 });
 
-// GET /countries/{idPais}:
 router.get('/countries/:idPais', async (req, res) => {
     const { idPais } = req.params;
     
@@ -108,6 +104,4 @@ router.get('/countries/:idPais', async (req, res) => {
 });
 
 
-
-  
 module.exports = router;
