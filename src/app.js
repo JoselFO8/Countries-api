@@ -33,7 +33,7 @@ server.use('/', routes);
 // });
 
 server.get('/', (req, res) => {
-  res.send('Prueba conexion Henry');
+  res.status(200).send('Conexion correcta!');
 });
 
 // Error catching endware.
