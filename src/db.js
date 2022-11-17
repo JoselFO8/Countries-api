@@ -7,12 +7,12 @@ const { DB_URI_POSTGRESQL } = process.env;
 const sequelize = new Sequelize(DB_URI_POSTGRESQL, {
   logging: false,
   native: false,
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    }
-  },
+  // dialectOptions: {
+  //   ssl: {
+  //     require: true,
+  //     rejectUnauthorized: false
+  //   }
+  // },
 });
 const basename = path.basename(__filename);
 

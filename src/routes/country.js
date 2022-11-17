@@ -6,21 +6,24 @@ const { Op, Country, TouristActivity } = require('../db.js');
 const router = Router();
 
 const getCountries = async () => {
-    const response = await axios(`https://restcountries.com/v3/all`)
-    const map = await response.data.map(a => {
-        const country = {
-            id: a.cca3,
-            name: a.name.official,
-            flag: a.flags[1],
-            continent: a.continents[0],
-            capital: a.capital != null ? a.capital[0] : "No data", //
-            subregion: a.subregion != null ? a.subregion : "No data",
-            area: a.area,
-            population: a.population,
-        }
-        return country
-    })
-    return map
+    try {
+        const response = await axios.get(`https://restcountries.com/v3/all`)
+        const map = await response.data.map(a => {
+            return {
+                id: a.cca3,
+                name: a.name.official,
+                flag: a.flags[1],
+                continent: a.continents[0],
+                capital: a.capital != null ? a.capital[0] : "No data", //
+                subregion: a.subregion != null ? a.subregion : "No data",
+                area: a.area,
+                population: a.population,
+            }
+        })
+        return map
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 const countriesToDb = async () => {
